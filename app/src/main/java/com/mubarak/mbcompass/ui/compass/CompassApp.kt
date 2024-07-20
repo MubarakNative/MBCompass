@@ -6,7 +6,6 @@ import android.content.ContextWrapper
 import android.view.WindowManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,7 +32,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -80,9 +78,7 @@ fun MBCompass(
         modifier = modifier
             .fillMaxSize()
             .background(
-                if (isSystemInDarkTheme()) {
-                    Color.Black
-                } else Color.Black
+                Color.Black
             ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -90,17 +86,12 @@ fun MBCompass(
 
         val imageModifier = Modifier
             .size(400.dp)
-            .background(
-                if (isSystemInDarkTheme()) {
-                    Color.Black
-                } else Color.Black
-            )
             .graphicsLayer {
                 rotationZ = -degree
             }
 
         Image(
-            painterResource(id = R.drawable.compass_image_png),
+            painterResource(id = R.drawable.compass_rose),
             contentDescription = stringResource(id = R.string.compass), modifier = imageModifier
         )
 
@@ -110,26 +101,16 @@ fun MBCompass(
 
         Text(
             text = "$degree°",
-            modifier = modifier.background(
-                if (isSystemInDarkTheme()) {
-                    Color.Black
-                } else Color.White
-            ),
             fontFamily = fontFamily,
-            style = MaterialTheme.typography.titleLarge,
-            fontSize = 24.sp
+            color = Color.White,
+            style = MaterialTheme.typography.displayMedium
         )
 
         Text(
             text = stringResource(id = cardinalDirection.dirName),
-            modifier = modifier.background(
-                if (isSystemInDarkTheme()) {
-                    Color.Black
-                } else Color.White
-            ),
+            color = Color.White,
             fontFamily = fontFamily,
             style = MaterialTheme.typography.titleLarge,
-            fontSize = 24.sp
         )
     }
 
