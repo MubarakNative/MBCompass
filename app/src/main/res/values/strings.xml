@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">MBCompass</string>
+    <string name="north">North</string>
+    <string name="north_northeast">North-Northeast</string>
+    <string name="northeast">Northeast</string>
+    <string name="east_northeast">East-Northeast</string>
+    <string name="east">East</string>
+    <string name="east_southeast">East-Southeast</string>
+    <string name="southeast">Southeast</string>
+    <string name="south_southeast">South-Southeast</string>
+    <string name="south">South</string>
+    <string name="south_southwest">South-Southwest</string>
+    <string name="southwest">Southwest</string>
+    <string name="west_southwest">West-Southwest</string>
+    <string name="west">West</string>
+    <string name="west_northwest">West-Northwest</string>
+    <string name="northwest">Northwest</string>
+    <string name="no_dir">N/A</string>
+    <string name="compass">Cardinal direction compass</string>
+    <string name="calibration_required">Calibration required!</string>
 </resources>
