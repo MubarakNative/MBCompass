@@ -93,7 +93,7 @@ fun MBCompass(
             }
 
         Image(
-            painterResource(id = R.drawable.compass_rose),
+            painterResource(id = R.drawable.v2_compass_mb),
             contentDescription = stringResource(id = R.string.compass), modifier = imageModifier
         )
 
