@@ -7,7 +7,8 @@ import android.view.WindowManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -62,6 +63,7 @@ fun CompassApp(context: Context) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MBCompass(
     modifier: Modifier = Modifier,
@@ -71,23 +73,23 @@ fun MBCompass(
 
     val azimuthState by viewModel.azimuth.collectAsStateWithLifecycle()
     val cardinalDirection = CardinalDirection.getDirectionFromAzimuth(azimuthState)
-    val degree = azimuthState.roundToInt().toFloat()
+    val degree = azimuthState.roundToInt()
     viewModel.updateAzimuth(degreeIn)
 
-    Column(
+    FlowColumn(
         modifier = modifier
             .fillMaxSize()
             .background(
                 Color.Black
             ),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalArrangement = Arrangement.Center
     ) {
 
         val imageModifier = Modifier
             .size(400.dp)
             .graphicsLayer {
-                rotationZ = -degree
+                rotationZ = -degree.toFloat()
             }
 
         Image(
@@ -99,19 +101,26 @@ fun MBCompass(
             Font(resId = R.font.dm_sans_18, weight = FontWeight.Bold)
         )
 
-        Text(
-            text = "$degree°",
-            fontFamily = fontFamily,
-            color = Color.White,
-            style = MaterialTheme.typography.displayMedium
-        )
+        FlowColumn(
+            horizontalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
 
-        Text(
-            text = stringResource(id = cardinalDirection.dirName),
-            color = Color.White,
-            fontFamily = fontFamily,
-            style = MaterialTheme.typography.titleLarge,
-        )
+            Text(
+                text = "$degree°",
+                fontFamily = fontFamily,
+                color = Color.White,
+                style = MaterialTheme.typography.displayMedium
+            )
+            Text(
+                text = stringResource(id = cardinalDirection.dirName),
+                color = Color.White,
+                fontFamily = fontFamily,
+                style = MaterialTheme.typography.titleLarge,
+            )
+        }
+
     }
 
 }
