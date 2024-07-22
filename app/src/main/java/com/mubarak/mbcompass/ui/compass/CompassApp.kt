@@ -58,7 +58,7 @@ fun CompassApp(context: Context) {
             listener = androidSensorEventListener,
         ) {
             degreeIn = it
-        }g
+        }
         MBCompass(modifier = Modifier.padding(innerPadding), degreeIn = degreeIn)
     }
 }
