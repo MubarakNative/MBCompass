@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.mubarak.mbcompass.R
 import com.mubarak.mbcompass.utils.ToDegree
+import kotlin.math.roundToInt
 
 class AndroidSensorEventListener(
     private val context: Context
