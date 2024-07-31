@@ -117,7 +117,7 @@ fun MBCompass(
                 text = stringResource(id = cardinalDirection.dirName),
                 color = Color.White,
                 fontFamily = fontFamily,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
             )
         }
 

@@ -17,5 +17,5 @@
     <string name="northwest">Northwest</string>
     <string name="no_dir">N/A</string>
     <string name="compass">Cardinal direction compass</string>
-    <string name="calibration_required">Calibration required!</string>
+    <string name="calibration_required">Calibration required: rotate the device in figure-8 pattern to recalibrate!</string>
 </resources>
