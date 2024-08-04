@@ -20,6 +20,7 @@
 ### Tech stack 🧱
 
 - UI (`Jetpack compose`).
+- Flow Layout
 - Android architecture component (`ViewModel`)
 - Lifecycle compose android.
 - Kotlin `flows`
