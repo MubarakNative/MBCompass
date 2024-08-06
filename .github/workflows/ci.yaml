@@ -32,14 +32,15 @@ jobs:
           key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-cache-
 
-      # Build Release APK
-      - name: Build Release APK
+      # Build Debug APK
+      - name: Build Debug APK
         run: bash ./gradlew assembleDebug --stacktrace
 
       # Generate APK Names
       - name: Generate APK Names
         id: generate_apk_names
         run: |
+          chmod a+x ./gradlew
           SHORT_SHA="$(git rev-parse --short ${{ github.sha }})"
           VERSION_NAME="$(./gradlew --quiet --console=plain printVersionName)"  
           VERSION_NAME="${VERSION_NAME// /-}"
