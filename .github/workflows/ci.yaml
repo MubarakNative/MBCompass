@@ -1,0 +1,60 @@
+name: Android CI
+
+on:
+  push:
+    tags:
+
+jobs:
+
+  build:
+    name: Build MBCompass
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout Code
+      - uses: actions/checkout@v1
+
+      # Setup JDK 17
+      - name: Setup JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      # Set Gradle Home
+      - name: Set Gradle Home
+        run: export GRADLE_USER_HOME=~/.gradle
+
+      # Gradle Cache
+      - name: Gradle Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-cache-
+
+      # Build Debug APK
+      - name: Build Debug APK
+        run: bash ./gradlew assembleDebug --stacktrace
+
+      # Generate APK Names
+      - name: Generate APK Names
+        id: generate_apk_names
+        run: |
+          chmod a+x ./gradlew
+          SHORT_SHA="$(git rev-parse --short ${{ github.sha }})"
+          VERSION_NAME="$(./gradlew --quiet --console=plain printVersionName)"  
+          VERSION_NAME="${VERSION_NAME// /-}"
+          echo ::set-output name=NAME_DEBUG::"mbcompass-v${VERSION_NAME}-${SHORT_SHA}-debug.apk"
+
+      # Rename APKs
+      - name: Rename APKs
+        run: |
+          mkdir -p app/apks/
+          mv app/build/outputs/apk/debug/app-debug.apk "app/apks/${{ steps.generate_apk_names.outputs.NAME_DEBUG }}"
+
+      # Upload Prod APK
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.generate_apk_names.outputs.NAME_DEBUG }}
+          path: "app/apks/${{ steps.generate_apk_names.outputs.NAME_DEBUG }}"

@@ -1,4 +1,4 @@
-## 🧭MBCompass - Compose Compass App
+## 🧭MBCompass - Compose Compass App [![Android CI](https://github.com/MubarakNative/MBCompass/actions/workflows/ci.yaml/badge.svg)](https://github.com/MubarakNative/MBCompass/actions/workflows/ci.yaml)
 
 ![Banner MBCompass](BannerMBCompass.png)
 
