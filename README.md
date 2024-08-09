@@ -27,3 +27,5 @@
 
 ### Improvements 🚀
 This app is currently in development 🛠️. New features and improvements might be added.
+
+- 🛰️ Currently Working on GNSS based Cardinal Direction by using location bearing.

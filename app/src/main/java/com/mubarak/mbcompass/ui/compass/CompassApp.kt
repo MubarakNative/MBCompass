@@ -7,6 +7,7 @@ import android.view.WindowManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
@@ -101,9 +102,7 @@ fun MBCompass(
             Font(resId = R.font.dm_sans_18, weight = FontWeight.Bold)
         )
 
-        FlowColumn(
-            horizontalArrangement = Arrangement.Center,
-            verticalArrangement = Arrangement.Center,
+        Column(
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
 
