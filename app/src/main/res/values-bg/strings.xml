@@ -125,4 +125,6 @@
     <string name="rec_started_time">Започнато в</string>
     <string name="rec_ended_time">Приключи в</string>
     <string name="pause_duration">Продължителност на паузата</string>
+    <string name="duration">Продължителност</string>
+    <string name="distance">Разстояние</string>
 </resources>
