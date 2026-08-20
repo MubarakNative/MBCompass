@@ -125,4 +125,6 @@
     <string name="rec_started_time">Gestartet um</string>
     <string name="rec_ended_time">Beendet um</string>
     <string name="pause_duration">Pausenlänge</string>
+    <string name="duration">Dauer</string>
+    <string name="distance">Distanz</string>
 </resources>
