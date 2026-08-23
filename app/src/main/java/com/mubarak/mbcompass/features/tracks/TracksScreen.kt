@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -51,6 +53,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -118,9 +121,8 @@ fun TracksScreen(
             else -> {
                 TracksList(
                     tracks = uiState.tracks,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
+                    scaffoldPadding = paddingValues,
+                    modifier = Modifier.fillMaxSize(),
                     onTrackClick = { track ->
                         navController.navigate(TrackRoute(trackUri = track.trackUriString))
                     },
@@ -140,16 +142,23 @@ fun TracksScreen(
 @Composable
 private fun TracksList(
     tracks: List<TrackItem>,
+    scaffoldPadding: PaddingValues,
     modifier: Modifier = Modifier,
     onTrackClick: (TrackItem) -> Unit,
     onStarClick: (TrackItem) -> Unit,
     onDeleteTrack: (TrackItem) -> Unit
 ) {
     var trackToDelete by remember { mutableStateOf<TrackItem?>(null) }
+    val layoutDirection = LocalLayoutDirection.current
 
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(16.dp),
+        contentPadding = PaddingValues(
+            top    = scaffoldPadding.calculateTopPadding()    + 16.dp,
+            bottom = scaffoldPadding.calculateBottomPadding() + 16.dp,
+            start  = scaffoldPadding.calculateStartPadding(layoutDirection) + 16.dp,
+            end    = scaffoldPadding.calculateEndPadding(layoutDirection)   + 16.dp,
+        ),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
