@@ -125,4 +125,6 @@
     <string name="rec_started_time">Käivitamise aeg</string>
     <string name="rec_ended_time">Lõppemise aeg</string>
     <string name="pause_duration">Pausi kestus</string>
+    <string name="duration">Kestus</string>
+    <string name="distance">Vahemaa</string>
 </resources>
